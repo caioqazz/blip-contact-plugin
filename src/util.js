@@ -62,13 +62,6 @@ export const buildModel = (header) => {
         { label: "Name", key: "name" },
         { label: "Source", key: "source" },
     ];
-
-    let items = [];
-    header.forEach(element => {
-        items.push({ label: element.charAt(0).toUpperCase() + element.slice(1), key: element });
-    });
-
-    return items;
 }
 
 
@@ -99,10 +92,10 @@ export const buildData = (header, data) => {
 }
 
 export const removeEmptyFields = (data) => {
-    let items = [];
+    let items = {};
     for (const key in data) {
         if (data[key] !== "") {
-            items.push({ [key]: data[key] })
+            items = {...items, [key]: data[key] };
         }
     }
     return items;

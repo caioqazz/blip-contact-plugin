@@ -1,8 +1,6 @@
 import { IframeMessageProxy } from 'iframe-message-proxy'
 import { generateLineFilter, generateLinePagination } from '../util';
-import { errorToast, successToast } from '../toastUtil';
 
-const DEFAULT_DATA = { total: 0, items: [] };
 
 export const getApplication = async () => {
     const { response: application } = await IframeMessageProxy.sendMessage({
@@ -10,7 +8,7 @@ export const getApplication = async () => {
     })
     return application
 }
-export const getContacts = async (pagination, filter) => {
+export const getContactsBase = async (pagination, filter) => {
 
     try {
         const { response } = await IframeMessageProxy.sendMessage({
@@ -24,34 +22,18 @@ export const getContacts = async (pagination, filter) => {
             }
         })
 
-        return response
+
+        return { status: true, response: response };
 
     } catch (error) {
-        errorToast("Error loading contacts")
-        return DEFAULT_DATA;
-
+        return { status: false, response: error };
     }
 
 }
 
-export const addContactCollections = async (contacts) => {
-    let count = 0;
-    for (const element of contacts) {
-        count += await addContactBase(element);
-    }
-    successToast(`${count} contacts add`);
-}
 
-export const addContact = async (contact) => {
-  console.log(contact);
-  
-    //     await addContactBase(contact);
-  
-    // successToast(`${contact.identity} contacts add`);
-}
-
-const addContactBase = async (contact) => {
-
+export const addContactBase = async (contact) => {
+    console.log(contact)
 
     try {
         await IframeMessageProxy.sendMessage(
@@ -71,11 +53,10 @@ const addContactBase = async (contact) => {
             })
 
 
-        return 1;
+        return { status: true, response: contact };
 
     } catch (error) {
-        errorToast("Error adding contact"+ error)
-        return;
+        return { status: false, response: error };
     }
 }
 

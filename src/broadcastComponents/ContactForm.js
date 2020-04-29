@@ -91,11 +91,11 @@ function ContactForm({ onAdd }) {
                     </Form.Row>
                 })
             }
-            <Button onClick={handleAddExtras}>Adicionar</Button>
+            <Button  onClick={handleAddExtras}>+</Button>
 
-
-            <Button variant="primary" type="submit">
-                Submit
+            <hr />
+            <Button variant="success" className="float-right" type="submit">
+                Add Contact
         </Button>
         </Form>
     )

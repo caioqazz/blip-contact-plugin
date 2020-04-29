@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { Button, Row, Col, Pagination } from "react-bootstrap";
 import FilterForm from './FilterForm';
 import { countIndex, sortData, replaceDelimiter } from '../util';
-import { FiUserPlus, FiSearch } from 'react-icons/fi';
+import {  FiSearch } from 'react-icons/fi';
 import ContactModal from './ContactModal';
 import { BlipTable } from "components/BlipTable";
 import PropTypes from 'prop-types';

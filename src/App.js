@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "blip-toolkit/dist/blip-toolkit.css"
-import { getApplication, getContacts, addContactCollections,addContact } from "./api/applicationService"
+import { getApplication } from "./api/applicationService"
+import { getContacts, addContactCollections, addContact } from "./api/serviceController"
 import { withLoading } from "./api/commomService"
 import { PageHeader } from "components/PageHeader"
 import { CommonProvider } from "contexts/CommonContext"
@@ -52,7 +53,7 @@ function App() {
         })
     }, [])
 
-    const title = "Broadcast Plugin"
+    const title = "Contact Plugin"
 
     return (
         <CommonProvider>
@@ -63,15 +64,18 @@ function App() {
                         <ul className="bp-tab-nav">
                             {/* Add contatcs */}
                             <li>
+                                <a href="#" data-ref="add">Add/Update Contacts</a>
+                            </li>
+                            <li>
                                 <a href="#" data-ref="export">Export Contacts</a>
                             </li>
                             <li>
                                 <a href="#" data-ref="import">Import Contacts</a>
                             </li>
-                            <li>
-                                <a href="#" data-ref="add">Add/Update Contacts</a>
-                            </li>
                         </ul>
+                        <div className="bp-tab-content fl w-100" data-ref="add">
+                            <ContactForm onAdd={handleContactAdd} />
+                        </div>
                         <div className="bp-tab-content fl w-100" data-ref="export">
                             <ContactTable
                                 total={contacts.data.total}
@@ -85,9 +89,6 @@ function App() {
 
                         <div className="bp-tab-content fl w-100" data-ref="import">
                             <ImportContact onAdd={handleContactCollectionAdd} />
-                        </div>
-                        <div className="bp-tab-content fl w-100" data-ref="add">
-                            <ContactForm onAdd={handleContactAdd} />
                         </div>
                     </div>
                 </PageTemplate>

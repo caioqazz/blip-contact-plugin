@@ -1,7 +1,7 @@
 import React from "react"
-import { CSVReader, jsonToCSV } from 'react-papaparse';
+import { CSVReader } from 'react-papaparse';
 import { buildModel, buildData } from '../util';
-
+import { errorToast } from '../toastUtil';
 function CsvForm({ OnLoadData }) {
 
     const handleOnDrop = (data) => {
@@ -11,6 +11,7 @@ function CsvForm({ OnLoadData }) {
     }
 
     const handleOnError = (err, file, inputElem, reason) => {
+        errorToast("Error loading CSV!")
     }
 
     const handleOnRemoveFile = (data) => {
