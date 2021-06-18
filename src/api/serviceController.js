@@ -16,8 +16,6 @@ export const addContactCollections = async (contacts) => {
 }
 
 export const addContact = async (contact) => {
-    console.log(contact);
-
     let { status } = await addContactBase(contact);
     if (status)
         successToast(`${contact.identity} successfully added!`);
@@ -29,7 +27,6 @@ export const addContact = async (contact) => {
 
 export const getContacts = async (pagination, filter) => {
     let { status, response } = await getContactsBase(pagination, filter);
-    console.log({ status, response })
     if (status)
         return response || DEFAULT_DATA;
     else
