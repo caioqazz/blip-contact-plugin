@@ -4,7 +4,12 @@ import { BlipTable } from "components/BlipTable";
 import { sortData } from '../util';
 import ContactModal from './ContactModal';
 import { Button } from "react-bootstrap";
+import ReactMarkdown from 'react-markdown'
+const instruction = `
+# Instructions 
 
+## Hello, *world*!
+`
 function ImportContact({ onAdd }) {
 
     const [data, setData] = useState({ header: {}, items: [], selected: [], model: [] });
@@ -16,6 +21,7 @@ function ImportContact({ onAdd }) {
     const [modal, setModal] = useState({ position: 0, display: false, contact: {} });
 
     const handleLoadData = (header, items, model) => {
+        console.log("model",{header, items, model})
         setData({ header: header, items: items, selected: [], model: model })
     }
     const handleImportData = () => {
@@ -39,6 +45,8 @@ function ImportContact({ onAdd }) {
             selectedItems={data.selected}
             actions={[<Button variant="success" onClick={handleImportData}>Adicionar</Button>]}
         />
+        <ReactMarkdown>{instruction}</ReactMarkdown>
+        <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSJMoqopX8qR3Qr4oL70S5Ebuu5Tlit6VYjwQ3NOKj77npKPUNp2ghEL-Hgkdi5o1joOeSIm_gLhqbM/pubhtml?widget=true&amp;headers=false"></iframe>
     </div>
 }
 

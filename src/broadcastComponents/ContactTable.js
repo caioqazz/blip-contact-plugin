@@ -1,12 +1,12 @@
 import React, { useState } from "react"
 import { Button, Row, Col, Pagination } from "react-bootstrap";
 import FilterForm from './FilterForm';
-import { countIndex, sortData, replaceDelimiter } from '../util';
+import { countIndex, sortData, replaceDelimiter, formatToSendNotification } from '../util';
 import {  FiSearch } from 'react-icons/fi';
 import ContactModal from './ContactModal';
 import { BlipTable } from "components/BlipTable";
 import PropTypes from 'prop-types';
-import CsvDownload from 'react-json-to-csv';;
+import CsvDownload from '../components/react-json-to-csv';;
 
 const tableModel = [
     { label: "Identity", key: "identity" },
@@ -15,7 +15,7 @@ const tableModel = [
 ];
 
 
-function ContactTable({ data, onApplyFilter, total, pagination, onChangePagination, fileName }) {
+function ContactTable({ data, onApplyFilter, total, pagination, onChangePagination, fileName,  isSendNotification }) {
 
     const [filterDisplay, setFilterDisplay] = useState(false)
     const [modal, setModal] = useState({ position: 0, display: false, contact: {} });
@@ -67,7 +67,7 @@ function ContactTable({ data, onApplyFilter, total, pagination, onChangePaginati
                         onSortSet={(item) => { sortData(data, item) }}
                         bodyHeight="1300px"
                         selectedItems={selected}
-                        actions={[<CsvDownload className="btn btn-success" data={replaceDelimiter(selected)} filename={`${fileName}.csv`}>Export</CsvDownload>]}
+                        actions={[<CsvDownload className="btn btn-success" data={ isSendNotification? formatToSendNotification(selected): replaceDelimiter(selected)} filename={`${fileName}.csv`}>Export</CsvDownload>]}
                     />
                     <div className="float-right">
 
@@ -93,6 +93,7 @@ ContactTable.propTypes = {
     pagination: PropTypes.number.isRequired,
     handleAdd: PropTypes.func.isRequired,
     filter: PropTypes.func.isRequired,
+    isSendNotification: PropTypes.bool.isRequired,
 }
 
 export default ContactTable

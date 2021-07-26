@@ -21,6 +21,7 @@
     "react-icons": "^3.9.0",
     "react-json-to-csv": "^1.0.4",
     "react-localization": "^1.0.13",
+    "react-markdown": "^6.0.2",
     "react-papaparse": "^3.0.3",
     "react-scripts": "^3.4.0",
     "resize-observer": "^1.0.0",

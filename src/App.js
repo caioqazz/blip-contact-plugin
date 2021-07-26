@@ -72,6 +72,9 @@ function App() {
                             <li>
                                 <a href="#" data-ref="import">Import Contacts</a>
                             </li>
+                            <li>
+                                <a href="#" data-ref="export-notifications">Export Contacts to Send Notifications</a>
+                            </li>
                         </ul>
                         <div className="bp-tab-content fl w-100" data-ref="add">
                             <ContactForm onAdd={handleContactAdd} />
@@ -84,11 +87,23 @@ function App() {
                                 pagination={contacts.pagination}
                                 onChangePagination={handleOnChangePagination}
                                 fileName={application ? application.name : ""}
+                                isSendNotification={false}
                             />
                         </div>
 
                         <div className="bp-tab-content fl w-100" data-ref="import">
                             <ImportContact onAdd={handleContactCollectionAdd} />
+                        </div>
+                        <div className="bp-tab-content fl w-100" data-ref="export-notifications">
+                            <ContactTable
+                                total={contacts.data.total}
+                                data={contacts.data.items}
+                                onApplyFilter={handleApplyFilter}
+                                pagination={contacts.pagination}
+                                onChangePagination={handleOnChangePagination}
+                                fileName={application ? application.name : ""}
+                                isSendNotification={true}
+                            />
                         </div>
                     </div>
                 </PageTemplate>
