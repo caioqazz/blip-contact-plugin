@@ -20,14 +20,17 @@ function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in ob
 
 var CsvDownload = function CsvDownload(props) {
   var data = props.data,
-      filename = props.filename,
-      others = _objectWithoutProperties(props, ['data', 'filename']);
+    filename = props.filename,
+    separator = props.separator,
+    others = _objectWithoutProperties(props, ['data', 'filename', 'separator']);
 
   return _react2.default.createElement(
     'button',
-    _extends({ onClick: function onClick() {
-        return (0, _jsonToCsvExport2.default)(data, filename);
-      } }, others),
+    _extends({
+      onClick: function onClick() {
+        return (0, _jsonToCsvExport2.default)(data, filename, separator);
+      }
+    }, others),
     props.children || 'Download Data'
   );
 };

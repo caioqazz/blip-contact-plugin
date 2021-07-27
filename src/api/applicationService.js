@@ -22,7 +22,6 @@ export const getContactsBase = async (pagination, filter) => {
             }
         })
 
-console.log({ status: true, response: response })
         return { status: true, response: response };
 
     } catch (error) {
@@ -34,7 +33,6 @@ console.log({ status: true, response: response })
 
 export const addContactBase = async (contact) => {
     try {
-        console.log({contact})
         await IframeMessageProxy.sendMessage(
             {
                 action: 'sendCommand',

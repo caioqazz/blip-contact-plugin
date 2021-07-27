@@ -10,6 +10,8 @@ import { BlipTabs } from 'blip-toolkit'
 import ContactTable from './broadcastComponents/ContactTable';
 import ImportContact from './broadcastComponents/ImportContact';
 import ContactForm from './broadcastComponents/ContactForm';
+import Footer from './Footer';
+import ReactGA from 'react-ga'
 
 function App() {
     const [application, setApplication] = useState({});
@@ -51,6 +53,10 @@ function App() {
             new BlipTabs('tab-nav')
             await fetchApi()
         })
+        ReactGA.initialize(process.env.REACT_APP_GA_KEY, { useExistingGa: true })
+        ReactGA.ga('create', process.env.REACT_APP_GA_KEY, 'auto', {
+          cookieFlags: 'SameSite=None; Secure',
+        })
     }, [])
 
     const title = "Contact Plugin"
@@ -64,16 +70,16 @@ function App() {
                         <ul className="bp-tab-nav">
                             {/* Add contatcs */}
                             <li>
-                                <a href="#" data-ref="add">Add/Update Contacts</a>
+                                <a href="#add" data-ref="add">Add/Update Contacts</a>
                             </li>
                             <li>
-                                <a href="#" data-ref="export">Export Contacts</a>
+                                <a href="#export" data-ref="export">Export Contacts</a>
                             </li>
                             <li>
-                                <a href="#" data-ref="import">Import Contacts</a>
+                                <a href="#import" data-ref="import">Import Contacts</a>
                             </li>
                             <li>
-                                <a href="#" data-ref="export-notifications">Export Contacts to Send Notifications</a>
+                                <a href="#export-notifications" data-ref="export-notifications">Export Contacts to Send Notifications</a>
                             </li>
                         </ul>
                         <div className="bp-tab-content fl w-100" data-ref="add">
@@ -107,6 +113,7 @@ function App() {
                         </div>
                     </div>
                 </PageTemplate>
+                <Footer />
             </div>
         </CommonProvider >
     )

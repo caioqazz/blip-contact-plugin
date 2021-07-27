@@ -61,6 +61,7 @@ function FilterForm({ applyFilter, disable, activated }) {
                                         <option value="not%20substringof">Not contain</option>
                                         <option value="eq">Equal</option>
                                         <option value="ne">Different than</option>
+                                        <option value="startswith">Starts with</option>
                                     </>
                                     : <option value="range">Range</option>
                                 }
