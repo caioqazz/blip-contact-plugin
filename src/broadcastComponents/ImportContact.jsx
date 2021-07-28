@@ -7,69 +7,8 @@ import { Button } from "react-bootstrap";
 import ReactGA from "react-ga";
 import {
   AiOutlineQuestionCircle,
-  AiFillGithub,
-  AiOutlineInfoCircle,
 } from "react-icons/ai";
-const instruction = `
-## Instructions 
 
-
-### File Header fields
-
-| Name        | Description                                             | Type   |
-|-------------|---------------------------------------------------------|--------|
-| identity    | The identity of the contact, in the name@domain forma   | string |
-| name        | The name of the contact.                                | string |
-| email       | The contact e-mail address.                             | string |
-| phoneNumber | The contact phone number.                               | string |
-| extras      | A generic JSON property to store any key/value strings. | object |
-
-
-### File format extentions
-
-* .csv
-* .tsv
-* .txt
-
-
-#### CSV
-CSV (Comma-Separated Values): **I strongly recommend using Google Sheets to edit the file and keep the format**
-
-Example:
-
-identity,name,source,email,phoneNumber,extras
-
-553491665951@wa.gw.msging.net,Caio Freitas,Whatsapp,caio@gmail.com,531000000001,{"variable1": "41231"}
-
-1656325099@telegram.gw.msging.net,John Doe,Telegram,john@gmail.com,531000000002,{"variablePX": "41231", "cpf": "123000000000" , "favoriteColor": "green"}
-
-3487312244629991@messenger.gw.msging.net,Jane Doe,Messenger,jane@gmail.com,531000000003,{"variable": "41231", "cpf": "00000000000" }
-
-#### TSV
-TSV (Tab-Separated Values): I strongly recommed to use Google Sheets to edit the file to keep the format.
-
-Example:
-
-| identity                                 | name         | source    | email          | phoneNumber  | extras                                                                    |
-|------------------------------------------|--------------|-----------|----------------|--------------|---------------------------------------------------------------------------|
-| 553491665951@wa.gw.msging.net            | Caio Freitas | Whatsapp  | caio@gmail.com | 531000000001 | {"variable1": "41231"}                                                    |
-| 1656325099@telegram.gw.msging.net        | John Doe     | Telegram  | john@gmail.com | 531000000002 | {"variablePX": "41231", "cpf": "123000000000" , "favoriteColor": "green"} |
-| 3487312244629991@messenger.gw.msging.net | Jane Doe     | Messenger | jane@gmail.com | 531000000003 | {"variable": "41231", "cpf": "00000000000" }                              |
-
-#### TXT
-
-Example:
-
-identity,name,source,email,phoneNumber,extras
-
-553491665951@wa.gw.msging.net,Caio Freitas,Whatsapp,caio@gmail.com,531000000001,{"variable1": "41231"}
-
-1656325099@telegram.gw.msging.net,John Doe,Telegram,john@gmail.com,531000000002,{"variablePX": "41231", "cpf": "123000000000" , "favoriteColor": "green"}
-
-3487312244629991@messenger.gw.msging.net,Jane Doe,Messenger,jane@gmail.com,531000000003,{"variable": "41231", "cpf": "00000000000" }
-
-
-`;
 function ImportContact({ onAdd }) {
   const [data, setData] = useState({
     header: {},
@@ -181,6 +120,13 @@ function ImportContact({ onAdd }) {
           href="https://docs.google.com/spreadsheets/d/1NjMuS0YzAwGMDsHhSfdacB-Pr3evuHgY-Bh4JQCz6sI/edit?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={()=>{
+            ReactGA.event({
+              category: "Contact Plugin",
+              action: `Contact Plugin - csv export`,
+              label: "Plugin",
+            });
+          }}
         >
           View/Download sample
         </a>
@@ -204,6 +150,13 @@ function ImportContact({ onAdd }) {
           href="https://docs.google.com/spreadsheets/d/1_uxVA5wghRn0mvMOKjiJ0RxsW_MGmtcrO-1TvmWYJlU/edit?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={()=>{
+            ReactGA.event({
+              category: "Contact Plugin",
+              action: `Contact Plugin - tsv export`,
+              label: "Plugin",
+            });
+          }}
         >
           View/Download sample
         </a>
@@ -214,6 +167,13 @@ function ImportContact({ onAdd }) {
           href="https://drive.google.com/file/d/1LYk4SibfPpl8OETbZZA2A72_HGeG4u-n/view?usp=sharing"
           target="_blank"
           rel="noopener noreferrer"
+          onClick={()=>{
+            ReactGA.event({
+              category: "Contact Plugin",
+              action: `Contact Plugin - txt export`,
+              label: "Plugin",
+            });
+          }}
         >
           View/Download sample
         </a>

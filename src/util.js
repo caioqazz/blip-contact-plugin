@@ -12,7 +12,6 @@ export const generateLinePagination = (pagination) => {
     return filterLine
 }
 export const generateLineFilter = (filter) => {
-    console.log({ filter })
     var filterLine = "&$filter=(source%20ne%20'blip.ai'%20or%20source%20eq%20null)%20";
     if (typeof filter !== 'undefined' && Object.keys(filter).length !== 0) {
         if (filter.condition === 'startswith') {
@@ -28,7 +27,6 @@ export const generateLineFilter = (filter) => {
             filterLine += "and%20(" + filter.prop + "%20" + filter.condition + "%20'" + filter.value.split(" ").join("%20") + "')";
 
     }
-    console.log(filterLine)
     return filterLine
 }
 export const countIndex = (pagination) => {
@@ -130,7 +128,6 @@ export const replaceDelimiter = (data) => {
             });
         else items.push(item);
     }
-    console.log(items)
     return items;
 }
 export const formatToSendNotification = (data) => {
@@ -139,6 +136,5 @@ export const formatToSendNotification = (data) => {
         const number = `+${item.identity.split("@")[0]}`
         items.push({ "phone": number, "name": item.name })
     }
-    console.log(items)
     return items;
 }

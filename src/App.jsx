@@ -15,29 +15,44 @@ import ReactGA from 'react-ga'
 
 function App() {
     const [application, setApplication] = useState({});
-    const [contacts, setContacts] = useState({
+    const [_contacts, setContacts] = useState({
         data: { total: 0, items: [] },
         filter: {},
         pagination: 0
     });
 
     const handleOnChangePagination = async (index) => {
-        withLoading(async () => { setContacts({ ...contacts, pagination: index, data: await getContacts(index, contacts.filter) }); })
+        withLoading(async () => { setContacts({ ..._contacts, pagination: index, data: await getContacts(index, _contacts.filter) }); })
     };
     const handleApplyFilter = async (newFilter) => {
         withLoading(async () => {
             setContacts({ pagination: 0, data: await getContacts(0, newFilter), filter: newFilter })
+            ReactGA.event({
+                category: "Contact Plugin",
+                action: `Apply Contact`,
+                label: "Plugin",
+              });
         });
     };
 
-    const handleContactCollectionAdd = (contacts) => {
+    const handleContactCollectionAdd =  (contacts) => {
         withLoading(async () => {
             addContactCollections(contacts);
+            ReactGA.event({
+                category: "Contact Plugin",
+                action: `Add Contact - ${contacts.length}`,
+                label: "Plugin",
+              });
         });
     }
-    const handleContactAdd = (contact) => {
+    const handleContactAdd =  (contact) => {
         withLoading(async () => {
             addContact(contact);
+            ReactGA.event({
+                category: "Contact Plugin",
+                action: `Add Unique Contact`,
+                label: "Plugin",
+              });
         });
     }
 
@@ -45,7 +60,7 @@ function App() {
 
     const fetchApi = async () => {
         setApplication(await getApplication())
-        setContacts({ ...contacts, data: (await getContacts(contacts.pagination)) })
+        setContacts({ ..._contacts, data: (await getContacts(_contacts.pagination)) })
     }
 
     useEffect(() => {
@@ -87,10 +102,10 @@ function App() {
                         </div>
                         <div className="bp-tab-content fl w-100" data-ref="export">
                             <ContactTable
-                                total={contacts.data.total}
-                                data={contacts.data.items}
+                                total={_contacts.data.total}
+                                data={_contacts.data.items}
                                 onApplyFilter={handleApplyFilter}
-                                pagination={contacts.pagination}
+                                pagination={_contacts.pagination}
                                 onChangePagination={handleOnChangePagination}
                                 fileName={application ? application.name : ""}
                                 isSendNotification={false}
@@ -102,10 +117,10 @@ function App() {
                         </div>
                         <div className="bp-tab-content fl w-100" data-ref="export-notifications">
                             <ContactTable
-                                total={contacts.data.total}
-                                data={contacts.data.items}
+                                total={_contacts.data.total}
+                                data={_contacts.data.items}
                                 onApplyFilter={handleApplyFilter}
-                                pagination={contacts.pagination}
+                                pagination={_contacts.pagination}
                                 onChangePagination={handleOnChangePagination}
                                 fileName={application ? application.name : ""}
                                 isSendNotification={true}
