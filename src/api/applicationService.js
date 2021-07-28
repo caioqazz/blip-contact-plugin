@@ -22,7 +22,6 @@ export const getContactsBase = async (pagination, filter) => {
             }
         })
 
-
         return { status: true, response: response };
 
     } catch (error) {

@@ -11,7 +11,7 @@ function ModalView({ data, position, display, handleClose }) {
             keys.forEach(key => {
                 items.push(
                     <tr key={key}>
-                        <td><b>{key}</b></td>
+                        <td><b>Extras.{key}</b></td>
                         <td>{data.extras[key]}</td>
                     </tr>
                 );

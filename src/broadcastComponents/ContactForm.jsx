@@ -7,8 +7,9 @@ function ContactForm({ onAdd }) {
         identity: '',
         name: '',
         email: '',
-        gender: 'Male',
-        phoneNumber: ''
+        source: 'Whatsapp',
+        phoneNumber: '',
+        lastMessageDate: new Date().toISOString()
     });
     const [extras, setExtras] = useState({});
 
@@ -56,18 +57,26 @@ function ContactForm({ onAdd }) {
                     <Form.Control type="email" value={formModel.email} onChange={(e) => { setFormModel({ ...formModel, email: e.target.value }) }} />
                 </Form.Group>
 
-                <Form.Group as={Col} controlId="formGridGender">
-                    <Form.Label>Gender</Form.Label>
-                    <Form.Control as="select" type="text" value={formModel.gender} onChange={(e) => { setFormModel({ ...formModel, gender: e.target.value }) }}  >
-                        <option>Male</option>
-                        <option>Female</option>
-                    </Form.Control>
-                </Form.Group>
-
                 <Form.Group as={Col} controlId="formGridPhoneNumber">
                     <Form.Label>Phone Number</Form.Label>
                     <Form.Control type="text" value={formModel.phoneNumber} onChange={(e) => { setFormModel({ ...formModel, phoneNumber: e.target.value }) }} />
                 </Form.Group>
+
+                <Form.Group as={Col} controlId="formGridGender">
+                    <Form.Label>Source</Form.Label>
+                    <Form.Control as="select" type="text" value={formModel.source} onChange={(e) => { setFormModel({ ...formModel, source: e.target.value }) }}  >
+                        <option>WhatsApp</option>
+                        <option value="0mn.io">Blip Chat</option>
+                        <option>Messenger</option>
+                        <option value="GBM">Google Business Messages</option>
+                        <option value="AzureBotService">Skype</option>
+                        <option value="AzureBotService">Microsoft Teams</option>
+                        <option>Telegram</option>
+                        <option>Workplace</option>
+                        <option value="Mailgun" >Email</option>
+                    </Form.Control>
+                </Form.Group>
+
             </Form.Row>
             <hr />
             <p>Extras</p>
