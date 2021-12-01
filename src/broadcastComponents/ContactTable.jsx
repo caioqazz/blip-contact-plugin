@@ -12,6 +12,7 @@ import ContactModal from "./ContactModal";
 import { BlipTable } from "components/BlipTable";
 import PropTypes from "prop-types";
 import CsvDownload from "../components/react-json-to-csv/dist";
+import ReactGA from 'react-ga'
 
 const tableModel = [
   { label: "Identity", key: "identity" },
@@ -40,7 +41,16 @@ function ContactTable({
     { property: "source", order: "asc" },
   ]);
   const [selected, setSeleted] = useState([]);
-
+ 
+  const sendNotification = (selected) => {
+    ReactGA.event({
+      category: "Contact Plugin",
+      action: `Format to send notification`,
+      label: "Plugin",
+    });
+    formatToSendNotification(selected)
+  }
+  
   const Items = () => {
     let items = [];
     if (countIndex(total) > 1) {
@@ -113,7 +123,7 @@ function ContactTable({
                 className="btn btn-success"
                 data={
                   isSendNotification
-                    ? formatToSendNotification(selected)
+                    ? sendNotification(selected)
                     : replaceDelimiter(selected)
                 }
                 separator={isSendNotification ? "," : ";"}
