@@ -93,9 +93,9 @@ function App() {
                             <li>
                                 <a href="#import" data-ref="import">Import Contacts</a>
                             </li>
-                            {/* <li>
+                            <li>
                                 <a href="#export-notifications" data-ref="export-notifications">Export Contacts to Send Notifications</a>
-                            </li> */}
+                            </li>
                         </ul>
                         <div className="bp-tab-content fl w-100" data-ref="add">
                             <ContactForm onAdd={handleContactAdd} />
