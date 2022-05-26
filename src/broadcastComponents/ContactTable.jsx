@@ -154,11 +154,11 @@ function ContactTable({
 }
 ContactTable.propTypes = {
   data: PropTypes.array.isRequired,
-  setPagination: PropTypes.func.isRequired,
+  setPagination: PropTypes.func,
   total: PropTypes.number,
   pagination: PropTypes.number.isRequired,
-  handleAdd: PropTypes.func.isRequired,
-  filter: PropTypes.func.isRequired,
+  handleAdd: PropTypes.func,
+  filter: PropTypes.func,
   isSendNotification: PropTypes.bool.isRequired,
 };
 

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Form, Col, Button } from "react-bootstrap"
+import { Form , Col, Button, Row } from "react-bootstrap"
 import { removeEmptyFields } from '../util';
 import { FiX } from "react-icons/fi";
-function ContactForm({ onAdd }) {
+
+const ContactForm= ({ onAdd }) => {
     const [formModel, setFormModel] = useState({
         identity: '',
         name: '',
@@ -39,7 +40,7 @@ function ContactForm({ onAdd }) {
 
     return (
         <Form onSubmit={handleSubmit} >
-            <Form.Row>
+            <Row>
                 <Form.Group as={Col} controlId="formGridIdentity">
                     <Form.Label>Identity*</Form.Label>
                     <Form.Control value={formModel.identity} onChange={(e) => { setFormModel({ ...formModel, identity: e.target.value }) }} type="text" required />
@@ -49,9 +50,9 @@ function ContactForm({ onAdd }) {
                     <Form.Label>Name</Form.Label>
                     <Form.Control value={formModel.name} onChange={(e) => { setFormModel({ ...formModel, name: e.target.value }) }} type="text" />
                 </Form.Group>
-            </Form.Row>
+            </Row>
 
-            <Form.Row>
+            <Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control type="email" value={formModel.email} onChange={(e) => { setFormModel({ ...formModel, email: e.target.value }) }} />
@@ -77,12 +78,12 @@ function ContactForm({ onAdd }) {
                     </Form.Control>
                 </Form.Group>
 
-            </Form.Row>
+            </Row>
             <hr />
             <p>Extras</p>
             {
                 Object.keys(extras).map((k, i) => {
-                    return <Form.Row key={i} className={extras[k].actived ? 'extras-item-visible' : 'extras-item-hidden'}>
+                    return <Row key={i} className={extras[k].actived ? 'extras-item-visible' : 'extras-item-hidden'}>
                         <Form.Group as={Col} md="5" controlId="formGridKey">
                             <Form.Label>Key</Form.Label>
                             <Form.Control type="text" value={extras[k].key} onChange={(e) => { setExtras({ ...extras, [k]: { ...extras[k], key: e.target.value } }) }} />
@@ -96,7 +97,7 @@ function ContactForm({ onAdd }) {
                             <Form.Label></Form.Label><br />
                             <FiX className="extras-remove-item" size={32} onClick={() => { setExtras({ ...extras, [k]: { ...extras[k], actived: false } }) }} />
                         </Form.Group>
-                    </Form.Row>
+                    </Row>
                 })
             }
             <Button  onClick={handleAddExtras}>+</Button>
