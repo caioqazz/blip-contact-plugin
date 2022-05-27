@@ -43,17 +43,20 @@ a {
 .w6 {
   width: 24rem;
 }
-.pagination{
+
+.pagination {
   margin-top: 15px;
   max-width: 70vw;
 }
+
 .page-link {
-  color: #28b4c3 !important ;
+  color: #28b4c3 !important;
 }
+
 .page-item.active .page-link {
-  background-color: #28b4c3 !important ;
-  border-color: #51dbe3  !important;
-  color: white !important ;
+  background-color: #28b4c3 !important;
+  border-color: #51dbe3 !important;
+  color: white !important;
 }
 
 .btn-primary {
@@ -73,33 +76,46 @@ a {
   background-color: #4dcb7b !important;
   border-color: #4dcb7b !important;
 }
-.medium-padding-bottom{
-padding-bottom: 5px;
+
+.medium-padding-bottom {
+  padding-bottom: 5px;
 }
-.medium-padding-top{
-padding-top: 5px;
+
+.medium-padding-top {
+  padding-top: 5px;
 }
+
 .btn-danger {
   background-color: #ff363e !important;
   border-color: #ff5a60 !important;
 }
-.items-index{
-     margin-bottom: 0 !important; 
+
+.items-index {
+  margin-bottom: 0 !important;
 }
+
 .card-header {
   background-color: #28b4c3 !important;
   color: white !important;
 }
-.export-button{
-  width:fit-content;
+
+.export-button {
+  width: fit-content;
 }
-.extras-item-hidden{
+
+.extras-item-hidden {
   display: none !important;
 }
-.extras-item-visible{
+
+.extras-item-visible {
   display: flex !important;
 }
-.extras-remove-item{
+
+.extras-remove-item {
   margin-top: 10px;
   color: red;
+}
+
+.float-right {
+  float: right;
 }

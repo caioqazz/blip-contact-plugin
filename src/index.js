@@ -7,7 +7,12 @@ import * as serviceWorker from './serviceWorker'
 import { setHeight } from 'api/commomService'
 import { ResizeObserver } from 'resize-observer'
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { applyPolyfills, defineCustomElements } from 'blip-ds/loader';
 
+// applying blip-ds custom elements
+applyPolyfills().then(() => {
+  defineCustomElements(window);
+});
 IframeMessageProxy.listen()
 
 const rootDiv = document.getElementById("root")
